@@ -1,7 +1,9 @@
-<!DOCTYPE HTML>
-<HTML>
-    <img src="https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp" alt="Dog photo">
+import React from 'react'
+
+const About = () => (
+  <section class="destination">
     <h2>Our Mission </h2>
+    <img src="https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp" alt="Dog Picture" />
     <p>
         Our mission is to advocate for animals by providing safety until home placement of those in our care. 
         We promote spay and neuter programs as a means to control pet overpopulation. 
@@ -18,4 +20,7 @@
         also become a guardian angel and sponsor a cage or kennel at the shelter. You can become a member
         of QAS or help out with one of our available positions at QAS.
     </p>
-</HTML>
+  </section>
+)
+
+export default About
