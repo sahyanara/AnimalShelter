@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
 
-//NOT SURE HOW TO RENDER THE STORE
 const posts = [
   {
       name: 'Rocky',
