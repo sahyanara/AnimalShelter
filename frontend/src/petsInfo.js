@@ -14,3 +14,5 @@ const petsInfo = (props) => {
   }
 
   export default petsInfo;
+
+  
