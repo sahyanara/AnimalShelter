@@ -1,6 +1,6 @@
 import React from "react"
 
-const petsInfo = (props) => {
+const PetsInfo = (props) => {
     return (
       <div className = "info">
         <h1>{props.name}</h1>
@@ -13,4 +13,4 @@ const petsInfo = (props) => {
     )
   }
 
-  export default petsInfo;
+  export default PetsInfo;
