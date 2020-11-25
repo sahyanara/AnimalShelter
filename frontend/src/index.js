@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import petsInfo from "./petsInfo";
+import PetsInfo from "./PetsInfo";
 import { Component } from "react";
 import { render } from "react-dom";
 import Button from "@material-ui/core/Button";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+import About from "./About";
+import Home from "./Home";
 
 //NOT SURE HOW TO RENDER THE STORE
 const posts = [
@@ -28,9 +32,9 @@ const posts = [
   }
 ];
 
-const store = () => {
+const Store = () => {
   const allPets = posts.map((info, idx) => (
-    <petsInfo
+    <PetsInfo
       key={idx}
       name={info.name}
       breed={info.breed}
@@ -42,12 +46,27 @@ const store = () => {
   ));
   return (
     <main>
+      <BrowserRouter>
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+        </nav>
+        <Switch>
+          <Route path="/About">
+            <About />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+
         {allPets}
     </main>
   );
 };
 
-render(<store />, document.getElementById("root"));
+render(<Store />, document.getElementById("root"));
 
 
 /*
