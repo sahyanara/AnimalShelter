@@ -17,6 +17,16 @@
   background: #bad3b7;
   display: flex;
   justify-content: space-around;
+  margin-top: 0px;
+  margin-bottom: 25px;
+  padding: 15px;
+  font-size: large;
+}
+
+.buttons{
+  background: #6198b8;
+  display: flex;
+  justify-content: space-around;
   margin-bottom: 25px;
   padding: 15px;
 }
@@ -48,7 +58,7 @@
   height: 250px;
   font-size: 10px;
   border-color: black;
-  border-style: solid;
+  border-style: outset;
   border-width: 1px;
   background: white;
 }
@@ -59,6 +69,16 @@ img.resize {
 
 .App-link {
   color: #61dafb;
+}
+
+.category {
+  background: #bad3b7;
+  display: flex;
+  align-items: left;
+  margin-top: 0px;
+  margin-bottom: 25px;
+  padding: 15px;
+  font-size: large;
 }
 
 @keyframes App-logo-spin {
