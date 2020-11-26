@@ -13,30 +13,12 @@ import { Link } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
 
-/*const posts = [
-  {
-      name: 'Rocky',
-      breed: 'American pit bull cross',
-      status: 'Neutered and vaccinated',
-      gender: 'Female',
-      yearsOld: 7,
-      adopted: false,
-  },
-  {
-      name: 'Juju',
-      breed: 'American staff cross',
-      status: 'Vaccindated, not neutered',
-      gender: 'Male',
-      yearsOld: 7,
-      adopted: true,
-  }
-];*/
-
 const posts = [
 	{
 		_id: 'dog',
 		pets: [
 			{ 
+        image: "https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp",
 				name: 'Rocky',
 				breed: 'American pit bull cross',
 				status: 'Neutered and vaccinated',
@@ -45,6 +27,7 @@ const posts = [
 				adopted: false,
 			},
 			{
+        image: "https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp",
 				name: 'Juju',
 				breed: 'American staff cross',
 				status: 'Vaccindated, not neutered',
@@ -119,10 +102,10 @@ const Store = () => {
           </Route>
           <Route path="/">
             <Home />
-          </Route>
+          </Route> 
         </Switch>
       </BrowserRouter>
-        {allPets}
+      {allPets}
     </main>
   );
 };
