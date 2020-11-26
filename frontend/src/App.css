@@ -14,20 +14,19 @@
 }
 
 .App-header {
-  background: #bad3b7;
+  background: #000000;
   display: flex;
   justify-content: space-around;
   margin-top: 0px;
-  margin-bottom: 25px;
   padding: 15px;
   font-size: large;
+  color: white;
 }
 
 .buttons{
-  background: #6198b8;
+  background: #ffffff;
   display: flex;
   justify-content: space-around;
-  margin-bottom: 25px;
   padding: 15px;
 }
 
@@ -52,15 +51,19 @@
 }
 
 .rectangle {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   position: relative;
   left: 20px;
-  width: 150px;
+  width: 250px;
   height: 250px;
-  font-size: 10px;
-  border-color: black;
+  font-size: 13px;
+  border-color: rgb(255, 255, 255);
   border-style: outset;
   border-width: 1px;
+  margin-bottom: 10;
   background: white;
+  resize: both;
+  overflow: auto;
 }
 img.resize {
   width: 150px; /* you can use % */
@@ -72,7 +75,7 @@ img.resize {
 }
 
 .category {
-  background: #bad3b7;
+  background: #fffffff3;
   display: flex;
   align-items: left;
   margin-top: 0px;
