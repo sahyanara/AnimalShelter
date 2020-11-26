@@ -6,6 +6,7 @@ const PetsInfo = (props) => {
     return (
       <section class = "rectangle">
       <div className = "info1">
+        <img>{props.image}</img>
         <h1>{props.name}</h1>
         <p> {props.breed}</p>
         <p> {props.status}</p>
