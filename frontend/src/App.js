@@ -13,12 +13,8 @@ function App() {
   return (
     <BrowserRouter>
         <nav>
-          <ul>
             <Link to="/">Home</Link>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-          </ul>
+            <Link to="/about">About</Link>
         </nav>
           <Switch>
           <Route path="/About">
