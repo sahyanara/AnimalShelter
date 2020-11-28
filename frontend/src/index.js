@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import PetsInfo from "./PetsInfo";
 import Category from "./Category";
@@ -62,17 +61,6 @@ const posts = [
 
 const Store = () => {
   const allPets = posts.map((info, idx) => (
-    /*<PetsInfo
-      key={idx}
-      _id={info._id}
-      name={info.name}
-      breed={info.breed}
-      status={info.status}
-      gender={info.gender}
-      yearsOld={info.yearsOld}
-      adopted={info.adopted}
-    />
-  ));*/
     <Category
       key={idx}
       _id={info._id}
@@ -97,15 +85,16 @@ const Store = () => {
           <Link to="/about">About</Link>
         </nav>
         <Switch>
-          <Route path="/About">
+          <Route exact path="/About">
             <About />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
+            {allPets}
           </Route> 
         </Switch>
       </BrowserRouter>
-      {allPets}
+      
     </main>
   );
 };
