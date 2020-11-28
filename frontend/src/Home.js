@@ -9,15 +9,10 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <header className="App-header">
-          <p> BoG's Animal Shelter </p>
-        </header>
+        
       </div>
     </BrowserRouter>
   );
 }
 
-{
-  /*render(<store />)*/
-}
 export default App;
