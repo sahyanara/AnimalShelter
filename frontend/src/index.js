@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+//import App from './App';
 import reportWebVitals from "./reportWebVitals";
 import PetsInfo from "./PetsInfo";
 import Category from "./Category";
@@ -43,7 +44,7 @@ const posts = [
     _id: "cat",
     pets: [
       {
-        image: "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
+        image: "https://ichef.bbci.co.uk/news/800/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
         name: "Terry",
         breed: "Domestic medium hair cross",
         status: "Neutered, not vaccinated",
@@ -52,7 +53,7 @@ const posts = [
         adopted: false
       },
       {
-        image: "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
+        image: "https://ichef.bbci.co.uk/news/800/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
         name: "Chonker",
         breed: "Main coone",
         status: "Status unknown",
@@ -108,11 +109,10 @@ const Store = () => {
   return (
     <main>
       <BrowserRouter>
-          <header className="App-header">
-            <p> BoG's Animal Shelter </p>
-            <Link class="buttons" to="/">Home</Link>
-            <Link class="buttons" to="/about">About</Link>
-          </header>       
+        <nav class="buttons">
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+        </nav>
         <Switch>
           <Route path="/About">
             <About />
