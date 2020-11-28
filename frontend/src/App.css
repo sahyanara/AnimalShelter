@@ -24,38 +24,19 @@
 }
 
 .buttons{
-  background: #ffffff;
+  background: #000000;
+  color: white;
   display: flex;
   justify-content: space-around;
+  margin-top: 0px;
   padding: 15px;
-}
-
-.App-header2 {
-  background: #b7d3d3;
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 15;
-  padding: 5px;
-  font-size: 15px;
-}
-.App-box {
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .rectangle {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  position: relative;
   left: 20px;
   width: 250px;
-  height: 250px;
+  height: 500px;
   font-size: 13px;
   border-color: rgb(255, 255, 255);
   border-style: outset;
@@ -66,7 +47,14 @@
   overflow: auto;
   border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
   border-image-slice: 2;
-  margin: 20px auto;
+  margin: auto;
+  position: relative;
+  display: inline-block;
+  margin-right: 40px;    
+}
+
+.words {
+  padding-left: 10px;
 }
 img.resize {
   width: 150px; /* you can use % */
@@ -87,6 +75,11 @@ img.resize {
   font-size: large;
 }
 
+.images img{
+  width: 100%;
+  height: 70%
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -95,3 +88,4 @@ img.resize {
     transform: rotate(360deg);
   }
 }
+
