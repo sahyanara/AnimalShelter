@@ -1,63 +1,66 @@
 import React from "react";
-import ReactDOM from 'react-dom';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from "react-dom";
+import "./index.css";
+//import App from './App';
+import reportWebVitals from "./reportWebVitals";
 import PetsInfo from "./PetsInfo";
 import Category from "./Category";
 import { Component } from "react";
 import { render } from "react-dom";
-import Button from "@material-ui/core/Button";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
+import Info from "./LearnMore";
 
 const posts = [
-	{
-		_id: 'dog',
-		pets: [
-			{ 
-        image: "https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp",
-				name: 'Rocky',
-				breed: 'American pit bull cross',
-				status: 'Neutered and vaccinated',
-				gender: 'Female',
-				yearsOld: 7,
-				adopted: false,
-			},
-			{
-        image: "https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp",
-				name: 'Juju',
-				breed: 'American staff cross',
-				status: 'Vaccindated, not neutered',
-				gender: 'Male',
-				yearsOld: 7,
-				adopted: true,
-			}
-		]
-	},
-	{
-		_id: 'cat',
-		pets: [
-			{
-				name: 'Terry',
-				breed: 'Domestic medium hair cross',
-				status: 'Neutered, not vaccinated',
-				gender: 'Male',
-				yearsOld: 2,
-				adopted: false,
-			},
-			{
-				name: 'Chonker',
-				breed: 'Main coone',
-				status: 'Status unknown',
-				gender: 'Female',
-				yearsOld: 5,
-				adopted: true,
-			}
+  {
+    _id: "dog",
+    pets: [
+      {
+        image:
+          "https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp",
+        name: "Rocky",
+        breed: "American pit bull cross",
+        status: "Neutered and vaccinated",
+        gender: "Female",
+        yearsOld: 7,
+        adopted: false
+      },
+      {
+        image:
+          "https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp",
+        name: "Juju",
+        breed: "American staff cross",
+        status: "Vaccindated, not neutered",
+        gender: "Male",
+        yearsOld: 7,
+        adopted: true
+      }
+    ]
+  },
+  {
+    _id: "cat",
+    pets: [
+      {
+        name: "Terry",
+        breed: "Domestic medium hair cross",
+        status: "Neutered, not vaccinated",
+        gender: "Male",
+        yearsOld: 2,
+        adopted: false
+      },
+      {
+        name: "Chonker",
+        breed: "Main coone",
+        status: "Status unknown",
+        gender: "Female",
+        yearsOld: 5,
+        adopted: true
+      }
     ]
   }
-]
+];
 
 const Store = () => {
   const allPets = posts.map((info, idx) => (
@@ -67,6 +70,7 @@ const Store = () => {
       pets={info.pets.map((info1, idx1) => (
         <PetsInfo
           key={idx1}
+          image={info1.image}
           name={info1.name}
           breed={info1.breed}
           status={info1.status}
@@ -80,27 +84,26 @@ const Store = () => {
   return (
     <main>
       <BrowserRouter>
-        <nav class = "buttons">
-          <Link to="/">Home</Link>
+        <nav class="buttons">
+          <Link to="/">Adopt</Link>
           <Link to="/about">About</Link>
         </nav>
         <Switch>
-          <Route exact path="/About">
+          <Route path="/About">
             <About />
           </Route>
           <Route exact path="/">
             <Home />
             {allPets}
-          </Route> 
+          </Route>
+          <Route exact path="/:id" children={<Info petArr={posts} />}></Route>
         </Switch>
       </BrowserRouter>
-      
     </main>
   );
 };
 
 render(<Store />, document.getElementById("root"));
-
 
 /*
 ReactDOM.render(
@@ -116,4 +119,3 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 //reportWebVitals();
-
