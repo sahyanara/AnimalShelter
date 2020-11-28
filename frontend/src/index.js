@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+//import App from './App';
 import reportWebVitals from "./reportWebVitals";
 import PetsInfo from "./PetsInfo";
 import Category from "./Category";
@@ -11,6 +12,7 @@ import { Link } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
 import Info from "./LearnMore";
+
 
 const posts = [
   {
@@ -42,7 +44,7 @@ const posts = [
     _id: "cat",
     pets: [
       {
-        image: "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
+        image: "https://ichef.bbci.co.uk/news/800/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
         name: "Terry",
         breed: "Domestic medium hair cross",
         status: "Neutered, not vaccinated",
@@ -51,7 +53,7 @@ const posts = [
         adopted: false
       },
       {
-        image: "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
+        image: "https://ichef.bbci.co.uk/news/800/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
         name: "Chonker",
         breed: "Main coone",
         status: "Status unknown",
@@ -62,6 +64,27 @@ const posts = [
     ]
   }
 ];
+
+function App(){
+  React.useEffect(() => {
+    fetch('mongodb+srv://ssaravanan9:4crlhTQpN0G51dpa@cluster0.c1mtq.mongodb.net/test')
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => {
+        console.error(error)
+      })
+  }, [])
+}
+
+
+// React.useEffect(() => {
+//       fetch('http://localhost:3000/')
+//         .then(response => response.json())
+//         .then(data => console.log(data))
+//         .catch(error => {
+//           console.error(error)
+//         })
+//     }, [])
 
 const Store = () => {
   const allPets = posts.map((info, idx) => (
@@ -82,14 +105,14 @@ const Store = () => {
       ))}
     />
   ));
+
   return (
     <main>
       <BrowserRouter>
-          <header className="App-header">
-            <p> BoG's Animal Shelter </p>
-            <Link class="buttons" to="/">Adopt</Link>
-            <Link class="buttons" to="/about">About</Link>
-          </header>       
+        <nav class="buttons">
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+        </nav>
         <Switch>
           <Route path="/About">
             <About />
@@ -107,17 +130,118 @@ const Store = () => {
 
 render(<Store />, document.getElementById("root"));
 
-/*
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  
-  document.getElementById('root')
-);
-*/
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-//reportWebVitals();
+
+
+
+// function App() {
+    
+//   const [currentPets, setCurrentPets] = React.useState(PetsInfo)
+
+//   React.useEffect(() => {
+//     fetch('http://localhost:3001/pets')
+//       .then(response => response.json())
+//       .then(data => console.log(data))
+//       .catch(error => {
+//         console.error(error)
+//       })
+//   }, [])
+
+//   const updateAdoption = (props) => {
+//     currentPets[props.typeIndex].pets[props.petIndex].adopted = true
+//     setCurrentPets(currentPets)
+//   }
+//   return (
+
+//           <main>
+//             <BrowserRouter>
+//               <nav class="buttons">
+//                 <Link to="/">Adopt</Link>
+//                 <Link to="/about">About</Link>
+//               </nav>
+//               <Switch>
+//                 <Route path="/About">
+//                   <About />
+//                 </Route>
+//                 <Route exact path="/">
+//                   <Home />
+//                   {currentPets}
+//                 </Route>
+//                 <Route path="/:id" children={<Child currentPets={currentPets} updateAdoption={updateAdoption} />} />
+//               </Switch>
+//             </BrowserRouter>
+//           </main>
+//         );
+//     // <Router>
+//     //   <div className="main">
+//     //     <Nav />
+//     //     <div className="topMargin">
+//     //       <Switch>
+//     //         <Route exact path="/">
+//     //           <Redirect to="/adoptapet" />
+//     //         </Route>
+//     //         <Route exact path="/about">
+//     //           <About />
+//     //         </Route>
+//     //         <Route exact path="/adoptapet">
+//     //           <AdoptAPet content={currentPets} />
+//     //         </Route>
+//     //         <Route path="/:id" children={<Child currentPets={currentPets} updateAdoption={updateAdoption} />} />
+//     //       </Switch>
+//     //     </div>
+//     //   </div>
+//     // </Router>
+// }
+
+// function Child(props) {
+//   // We can use the `useParams` hook here to access
+//   // the dynamic pieces of the URL.
+//   let { id } = useParams();
+//   console.log(id);
+//   let ids = id.split("-");
+//   console.log(ids[0]);
+//   console.log(ids[1]);
+//   let type = 0;
+//   let pet = 0;
+//   while (props.currentPets[type]._id !== ids[1]) {
+//     type++;
+//   }
+//   while (props.currentPets[type].pets[pet].name !== ids[0]) {
+//     pet++;
+//   }
+
+
+//   return (
+//     <PetsInfo
+//       typeIndex={type}
+//       petIndex={pet}
+//       type={props.currentPets[type]._id}
+//       name={props.currentPets[type].pets[pet].name}
+//       breed={props.currentPets[type].pets[pet].breed}
+//       status={props.currentPets[type].pets[pet].status}
+//       gender={props.currentPets[type].pets[pet].gender}
+//       yearsOld={props.currentPets[type].pets[pet].yearsOld}
+//       adopted={props.currentPets[type].pets[pet].adopted}
+//       updateAdoption={props.updateAdoption}
+//       petInfo={props.currentPets}
+//     />
+//   );
+// }
+
+
+
+
+// /*
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+  
+//   document.getElementById('root')
+// );
+// */
+
+// // If you want to start measuring performance in your app, pass a function
+// // to log results (for example: reportWebVitals(console.log))
+// // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// //reportWebVitals();

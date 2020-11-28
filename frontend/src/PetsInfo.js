@@ -8,7 +8,11 @@ import {
   BrowserRouter,
   Link
 } from "react-router-dom";
+
+
 import Info from "./LearnMore";
+
+
 const PetsInfo = (props) => {
   let name = props.name;
   return (
