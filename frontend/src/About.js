@@ -20,6 +20,10 @@ const About = () => (
         also become a guardian angel and sponsor a cage or kennel at the shelter. You can become a member
         of QAS or help out with one of our available positions at QAS.
     </p>
+    <h2>Adoption hours </h2>
+    <p>Tuesday - 6-9 PM</p>
+    <p>Thursday - 6-8 PM</p>
+    <p>Saturday - 10AM - 4PM</p>
   </section>
 )
 
