@@ -31,7 +31,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 
 var express = require('express');
 var app = express();
-var port = process.env.PORT || 3002;
+var port = process.env.PORT || 3000;
 // var db = require('./config/db');
 var bodyParser = require('body-parser');
 
@@ -47,6 +47,7 @@ app.get('/', function(req, res) {
         console.log(err);
         return;
     }
+      res.header("Access-Control-Allow-Origin", "*");
       res.json(result);;
     });
 
