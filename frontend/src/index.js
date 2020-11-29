@@ -65,29 +65,37 @@ const posts = [
   }
 ];
 
+var pets = "before function"
 function App(){
-  React.useEffect(() => {
-    fetch('mongodb+srv://ssaravanan9:4crlhTQpN0G51dpa@cluster0.c1mtq.mongodb.net/test')
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => {
-        console.error(error)
-      })
-  }, [])
+  pets = "Went into the function"
+  async function fetchData() {
+    pets = "Went into the fetch"
+    await fetch('http://localhost:3002/')
+    .then(response => response.json())
+    .then(data => pets = "came here")
+    .catch(error => {
+      console.log(error)
+    })
+  }
+  fetchData();
 }
 
+// try {
+//   pets = "Went into try"
+//   await fetch('http://localhost:3000/')
+//   .then(response => response.json(), pets = "Hi")
+//   .then(data => pets = data)
+//   pets = "finished try"
+// } catch (e) {
+//   console.log(e)
+// } finally {
+//   console.log(pets)
+// }
 
-// React.useEffect(() => {
-//       fetch('http://localhost:3000/')
-//         .then(response => response.json())
-//         .then(data => console.log(data))
-//         .catch(error => {
-//           console.error(error)
-//         })
-//     }, [])
 
 const Store = () => {
-  const allPets = posts.map((info, idx) => (
+  App()
+   const allPets = posts.map((info, idx) => (
     <Category
       key={idx}
       _id={info._id}
@@ -108,6 +116,7 @@ const Store = () => {
 
   return (
     <main>
+      <p>{pets}</p>
       <BrowserRouter>
         <nav class="buttons">
           <Link to="/">Home</Link>
