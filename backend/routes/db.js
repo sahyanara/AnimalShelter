@@ -16,6 +16,7 @@ const dbName = "Animal_Shelter";
 var db = null;
 const uri = "mongodb+srv://ssaravanan9:4crlhTQpN0G51dpa@cluster0.c1mtq.mongodb.net/Animal_Shelter?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
+<<<<<<< HEAD:backend/db.js
 client.connect(err => {
     const collection = client.db(dbName).collection("Pets");
     db = client.db(dbName);
@@ -31,6 +32,20 @@ client.connect(err => {
 });
 console.log(dbName);
 
+=======
+// client.connect(err => {
+//     const collection = client.db(dbName).collection("Pets");
+//     collection.find().toArray(function(err, result) {
+//     if (err) {
+//         console.log(err);
+//         return;
+//     }
+//     console.log(result);
+//     });
+
+//   client.close();
+// });
+>>>>>>> 0b838c0cb8c99d0085404f22be7eb99fdbe42252:backend/routes/db.js
 
 
 var express = require('express');
@@ -44,6 +59,7 @@ var bodyParser = require('body-parser');
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 app.get('/', function(req, res) {
+<<<<<<< HEAD:backend/db.js
   client.db(dbName).collection("Pets").find({}, function(err, data) {
     console.log("hello");
     if (err) {
@@ -54,10 +70,50 @@ app.get('/', function(req, res) {
       res.json(data);
     }
   });
+=======
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db(dbName).collection("Pets");
+    collection.find().toArray(function(err, result) {
+    if (err) {
+        console.log(err);
+        return;
+    }
+      res.header("Access-Control-Allow-Origin", "*");
+      res.json(result);;
+    });
+
+  client.close();
 });
+      
+>>>>>>> 0b838c0cb8c99d0085404f22be7eb99fdbe42252:backend/routes/db.js
+});
+
+async function getAllPets() {
+  getPets().then(pets => console.log(pets));
+
+  return pets;
+}
+
+async function getPets() {
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db(dbName).collection("Pets");
+    collection.find().toArray(function(err, result) {
+      if (err) {
+          console.log(err);
+          return;
+      }
+      return result;
+    });
+
+    client.close();
+  });
+}
 
 app.listen(port);
 console.log('Server listening on port: ', port);
+module.exports = {getAllPets}
 
 
 

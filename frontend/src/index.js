@@ -12,7 +12,9 @@ import { Link } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
 import Info from "./LearnMore";
+import { callbackify } from "util";
 
+<<<<<<< HEAD
 var petData = [];
 const posts = [];
 //   // {
@@ -73,10 +75,89 @@ function App() {
       .catch(error => {
         console.error(error)
       })
+=======
+
+var petData = [
+  {
+    _id: "dog",
+    pets: [
+      {
+        image:
+          "https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp",
+        name: "Rocky",
+        breed: "American pit bull cross",
+        status: "Neutered and vaccinated",
+        gender: "Female",
+        yearsOld: 7,
+        adopted: false
+      },
+      {
+        image:
+          "https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp",
+        name: "Juju",
+        breed: "American staff cross",
+        status: "Vaccindated, not neutered",
+        gender: "Male",
+        yearsOld: 7,
+        adopted: true
+      }
+    ]
+  },
+  {
+    _id: "cat",
+    pets: [
+      {
+        image: "https://ichef.bbci.co.uk/news/800/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
+        name: "Terry",
+        breed: "Domestic medium hair cross",
+        status: "Neutered, not vaccinated",
+        gender: "Male",
+        yearsOld: 2,
+        adopted: false
+      },
+      {
+        image: "https://ichef.bbci.co.uk/news/800/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
+        name: "Chonker",
+        breed: "Main coone",
+        status: "Status unknown",
+        gender: "Female",
+        yearsOld: 5,
+        adopted: true
+      }
+    ]
+  }
+];
+
+//var pets = "before function"
+
+function App(){
+  React.useEffect(() => {
+    fetch('http://localhost:3000/')
+      .then(response => response.json())
+      .then((data) => 
+        {
+          console.log(data); 
+          petData = data;
+          console.log(petData);
+          return petData;
+        })
+>>>>>>> 0b838c0cb8c99d0085404f22be7eb99fdbe42252
   }, [])
 }
 
+// try {
+//   pets = "Went into try"
+//   await fetch('http://localhost:3000/')
+//   .then(response => response.json(), pets = "Hi")
+//   .then(data => pets = data)
+//   pets = "finished try"
+// } catch (e) {
+//   console.log(e)
+// } finally {
+//   console.log(pets)
+// }
 
+<<<<<<< HEAD
 // React.useEffect(() => {
 //       fetch('http://localhost:3000/')
 //         .then(response => response.json())
@@ -86,9 +167,12 @@ function App() {
 //         })
 //     }, [])
 console.log(posts);
+=======
+>>>>>>> 0b838c0cb8c99d0085404f22be7eb99fdbe42252
 
 const Store = () => {
-  const allPets = posts.map((info, idx) => (
+   App();
+   const allPets = petData.map((info, idx) => (
     <Category
       key={idx}
       _id={info._id}
@@ -122,7 +206,7 @@ const Store = () => {
             <Home />
             {allPets}
           </Route>
-          <Route exact path="/:id" children={<Info petArr={posts} />}></Route>
+          <Route exact path="/:id" children={<Info petArr={petData} />}></Route>
         </Switch>
       </BrowserRouter>
     </main>
@@ -130,6 +214,7 @@ const Store = () => {
 };
 
 render(<Store />, document.getElementById("root"));
+
 
 
 

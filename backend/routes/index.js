@@ -1,3 +1,5 @@
+const db = require("./db") 
+
 var { response } = require('express');
 var express = require('express');
 var router = express.Router();
@@ -5,7 +7,8 @@ var app = express();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+  var pets = db.getAllPets().then(pets => res.render('index', { title: 'Pets', content: pets }));
+  console.log(pets) 
 });
 
 async function group(client) {
