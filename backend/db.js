@@ -13,10 +13,12 @@
 
 const MongoClient = require('mongodb').MongoClient;
 const dbName = "Animal_Shelter";
+var db = null;
 const uri = "mongodb+srv://ssaravanan9:4crlhTQpN0G51dpa@cluster0.c1mtq.mongodb.net/Animal_Shelter?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
     const collection = client.db(dbName).collection("Pets");
+    db = client.db(dbName);
     collection.find().toArray(function(err, result) {
     if (err) {
         console.log(err);
@@ -27,29 +29,31 @@ client.connect(err => {
 
   client.close();
 });
+console.log(dbName);
+
 
 
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
 // var db = require('./config/db');
+// const db = client.db(dbName);
 var bodyParser = require('body-parser');
 
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 app.get('/', function(req, res) {
-
-  db.find({}, function(err, data) {
+  client.db(dbName).collection("Pets").find({}, function(err, data) {
+    console.log("hello");
     if (err) {
       console.log(err);
-      return res.send(500, 'Something Went wrong with Retrieving data');
+      return res.send(500, 'Something went wrong with retrieving data');
     } else {
-      // console.log(data[0]);
+      console.log("hello");
       res.json(data);
     }
   });
-
 });
 
 app.listen(port);

@@ -13,63 +13,63 @@ import About from "./About";
 import Home from "./Home";
 import Info from "./LearnMore";
 
+var petData = [];
+const posts = [];
+//   // {
+//   //   _id: "dog",
+//   //   pets: [
+//   //     {
+//   //       image:
+//   //         "https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp",
+//   //       name: "Rocky",
+//   //       breed: "American pit bull cross",
+//   //       status: "Neutered and vaccinated",
+//   //       gender: "Female",
+//   //       yearsOld: 7,
+//   //       adopted: false
+//   //     },
+//   //     {
+//   //       image:
+//   //         "https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp",
+//   //       name: "Juju",
+//   //       breed: "American staff cross",
+//   //       status: "Vaccindated, not neutered",
+//   //       gender: "Male",
+//   //       yearsOld: 7,
+//   //       adopted: true
+//   //     }
+//   //   ]
+//   // },
+//   // {
+//   //   _id: "cat",
+//   //   pets: [
+//   //     {
+//   //       image: "https://ichef.bbci.co.uk/news/800/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
+//   //       name: "Terry",
+//   //       breed: "Domestic medium hair cross",
+//   //       status: "Neutered, not vaccinated",
+//   //       gender: "Male",
+//   //       yearsOld: 2,
+//   //       adopted: false
+//   //     },
+//   //     {
+//   //       image: "https://ichef.bbci.co.uk/news/800/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
+//   //       name: "Chonker",
+//   //       breed: "Main coone",
+//   //       status: "Status unknown",
+//   //       gender: "Female",
+//   //       yearsOld: 5,
+//   //       adopted: true
+//   //     }
+//   //   ]
+//   // }
+// ];
 
-const posts = [
-  {
-    _id: "dog",
-    pets: [
-      {
-        image:
-          "https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp",
-        name: "Rocky",
-        breed: "American pit bull cross",
-        status: "Neutered and vaccinated",
-        gender: "Female",
-        yearsOld: 7,
-        adopted: false
-      },
-      {
-        image:
-          "https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp",
-        name: "Juju",
-        breed: "American staff cross",
-        status: "Vaccindated, not neutered",
-        gender: "Male",
-        yearsOld: 7,
-        adopted: true
-      }
-    ]
-  },
-  {
-    _id: "cat",
-    pets: [
-      {
-        image: "https://ichef.bbci.co.uk/news/800/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
-        name: "Terry",
-        breed: "Domestic medium hair cross",
-        status: "Neutered, not vaccinated",
-        gender: "Male",
-        yearsOld: 2,
-        adopted: false
-      },
-      {
-        image: "https://ichef.bbci.co.uk/news/800/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
-        name: "Chonker",
-        breed: "Main coone",
-        status: "Status unknown",
-        gender: "Female",
-        yearsOld: 5,
-        adopted: true
-      }
-    ]
-  }
-];
-
-function App(){
+function App() {
   React.useEffect(() => {
-    fetch('mongodb+srv://ssaravanan9:4crlhTQpN0G51dpa@cluster0.c1mtq.mongodb.net/test')
+    fetch('http://localhost:3001/')
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(data => posts = data)
       .catch(error => {
         console.error(error)
       })
@@ -85,6 +85,7 @@ function App(){
 //           console.error(error)
 //         })
 //     }, [])
+console.log(posts);
 
 const Store = () => {
   const allPets = posts.map((info, idx) => (
