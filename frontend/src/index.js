@@ -12,9 +12,10 @@ import { Link } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
 import Info from "./LearnMore";
+import { callbackify } from "util";
 
 
-const posts = [
+var petData = [
   {
     _id: "dog",
     pets: [
@@ -65,19 +66,20 @@ const posts = [
   }
 ];
 
-var pets = "before function"
+//var pets = "before function"
+
 function App(){
-  pets = "Went into the function"
-  async function fetchData() {
-    pets = "Went into the fetch"
-    await fetch('http://localhost:3002/')
-    .then(response => response.json())
-    .then(data => pets = "came here")
-    .catch(error => {
-      console.log(error)
-    })
-  }
-  fetchData();
+  React.useEffect(() => {
+    fetch('http://localhost:3000/')
+      .then(response => response.json())
+      .then((data) => 
+        {
+          console.log(data); 
+          petData = data;
+          console.log(petData);
+          return petData;
+        })
+  }, [])
 }
 
 // try {
@@ -94,8 +96,8 @@ function App(){
 
 
 const Store = () => {
-  App()
-   const allPets = posts.map((info, idx) => (
+   App();
+   const allPets = petData.map((info, idx) => (
     <Category
       key={idx}
       _id={info._id}
@@ -116,7 +118,6 @@ const Store = () => {
 
   return (
     <main>
-      <p>{pets}</p>
       <BrowserRouter>
         <nav class="buttons">
           <Link to="/">Home</Link>
@@ -130,7 +131,7 @@ const Store = () => {
             <Home />
             {allPets}
           </Route>
-          <Route exact path="/:id" children={<Info petArr={posts} />}></Route>
+          <Route exact path="/:id" children={<Info petArr={petData} />}></Route>
         </Switch>
       </BrowserRouter>
     </main>
@@ -138,6 +139,7 @@ const Store = () => {
 };
 
 render(<Store />, document.getElementById("root"));
+
 
 
 
