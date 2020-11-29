@@ -15,23 +15,23 @@ const MongoClient = require('mongodb').MongoClient;
 const dbName = "Animal_Shelter";
 const uri = "mongodb+srv://ssaravanan9:4crlhTQpN0G51dpa@cluster0.c1mtq.mongodb.net/Animal_Shelter?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-    const collection = client.db(dbName).collection("Pets");
-    collection.find().toArray(function(err, result) {
-    if (err) {
-        console.log(err);
-        return;
-    }
-    console.log(result);
-    });
+// client.connect(err => {
+//     const collection = client.db(dbName).collection("Pets");
+//     collection.find().toArray(function(err, result) {
+//     if (err) {
+//         console.log(err);
+//         return;
+//     }
+//     console.log(result);
+//     });
 
-  client.close();
-});
+//   client.close();
+// });
 
 
 var express = require('express');
 var app = express();
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3002;
 // var db = require('./config/db');
 var bodyParser = require('body-parser');
 
@@ -39,21 +39,47 @@ var bodyParser = require('body-parser');
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 app.get('/', function(req, res) {
-
-  db.find({}, function(err, data) {
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db(dbName).collection("Pets");
+    collection.find().toArray(function(err, result) {
     if (err) {
-      console.log(err);
-      return res.send(500, 'Something Went wrong with Retrieving data');
-    } else {
-      // console.log(data[0]);
-      res.json(data);
+        console.log(err);
+        return;
     }
-  });
+      res.json(result);;
+    });
 
+  client.close();
 });
+      
+});
+
+async function getAllPets() {
+  getPets().then(pets => console.log(pets));
+
+  return pets;
+}
+
+async function getPets() {
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db(dbName).collection("Pets");
+    collection.find().toArray(function(err, result) {
+      if (err) {
+          console.log(err);
+          return;
+      }
+      return result;
+    });
+
+    client.close();
+  });
+}
 
 app.listen(port);
 console.log('Server listening on port: ', port);
+module.exports = {getAllPets}
 
 
 
