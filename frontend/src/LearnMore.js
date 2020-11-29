@@ -74,7 +74,7 @@ const Info = (props) => {
       <h4>{pet.breed}</h4>
       <h4>{pet.description}</h4>
       <Link to="/">Back</Link>
-      <button onClick={() => alert('Processing')}>
+      <button onClick={() => alert('Processing your adoption request!')}>
       Adopt me!!
     </button>
 
