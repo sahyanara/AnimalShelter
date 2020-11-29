@@ -12,9 +12,10 @@ import { Link } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
 import Info from "./LearnMore";
+import { callbackify } from "util";
 
 
-const posts = [
+var petData = [
   {
     _id: "dog",
     pets: [
@@ -26,6 +27,7 @@ const posts = [
         status: "Neutered and vaccinated",
         gender: "Female",
         yearsOld: 7,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         adopted: false
       },
       {
@@ -36,6 +38,7 @@ const posts = [
         status: "Vaccindated, not neutered",
         gender: "Male",
         yearsOld: 7,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         adopted: true
       }
     ]
@@ -50,6 +53,7 @@ const posts = [
         status: "Neutered, not vaccinated",
         gender: "Male",
         yearsOld: 2,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         adopted: false
       },
       {
@@ -59,35 +63,45 @@ const posts = [
         status: "Status unknown",
         gender: "Female",
         yearsOld: 5,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         adopted: true
       }
     ]
   }
 ];
 
+//var pets = "before function"
+
 function App(){
   React.useEffect(() => {
-    fetch('mongodb+srv://ssaravanan9:4crlhTQpN0G51dpa@cluster0.c1mtq.mongodb.net/test')
+    fetch('http://localhost:3000/')
       .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => {
-        console.error(error)
-      })
+      .then((data) => 
+        {
+          console.log(data); 
+          petData = data;
+          console.log(petData);
+          return petData;
+        })
   }, [])
 }
 
+// try {
+//   pets = "Went into try"
+//   await fetch('http://localhost:3000/')
+//   .then(response => response.json(), pets = "Hi")
+//   .then(data => pets = data)
+//   pets = "finished try"
+// } catch (e) {
+//   console.log(e)
+// } finally {
+//   console.log(pets)
+// }
 
-// React.useEffect(() => {
-//       fetch('http://localhost:3000/')
-//         .then(response => response.json())
-//         .then(data => console.log(data))
-//         .catch(error => {
-//           console.error(error)
-//         })
-//     }, [])
 
 const Store = () => {
-  const allPets = posts.map((info, idx) => (
+   App();
+   const allPets = petData.map((info, idx) => (
     <Category
       key={idx}
       _id={info._id}
@@ -121,7 +135,7 @@ const Store = () => {
             <Home />
             {allPets}
           </Route>
-          <Route exact path="/:id" children={<Info petArr={posts} />}></Route>
+          <Route exact path="/:id" children={<Info petArr={petData} />}></Route>
         </Switch>
       </BrowserRouter>
     </main>
@@ -129,6 +143,7 @@ const Store = () => {
 };
 
 render(<Store />, document.getElementById("root"));
+
 
 
 
